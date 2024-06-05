@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package hotel;
+
+option go_package = "github.com/Jiali-Xing/mucache/internal/hotel";
+
+// Search service definition
+service SearchService {
+  rpc SearchHotels(SearchHotelsRequest) returns (SearchHotelsResponse);
+  rpc Nearby(NearbyRequest) returns (NearbyResponse);
+}
+
+message SearchHotelsRequest {
+  string InDate = 1;
+  string OutDate = 2;
+  string Location = 3;
+}
+
+message SearchHotelsResponse {
+  repeated HotelProfile Profiles = 1;
+}
+
+message NearbyRequest {
+  string InDate = 1;
+  string OutDate = 2;
+  string Location = 3;
+}
+
+message NearbyResponse {
+  repeated Rate Rates = 1;
+}
+
+message HotelProfile {
+  string HotelId = 1;
+  string Name = 2;
+  string Phone = 3;
+  string Info = 4;
+}
+
+message Rate {
+  string HotelId = 1;
+  int32 Price = 2;
+}

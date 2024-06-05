@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package hotel;
+
+option go_package = "github.com/Jiali-Xing/mucache/internal/hotel";
+
+// Reservation service definition
+service ReservationService {
+  rpc FrontendReservation(FrontendReservationRequest) returns (FrontendReservationResponse);
+  rpc MakeReservation(MakeReservationRequest) returns (MakeReservationResponse);
+  rpc CheckAvailability(CheckAvailabilityRequest) returns (CheckAvailabilityResponse);
+}
+
+message FrontendReservationRequest {
+  string HotelId = 1;
+  string InDate = 2;
+  string OutDate = 3;
+  int32 Rooms = 4;
+  string Username = 5;
+  string Password = 6;
+}
+
+message FrontendReservationResponse {
+  bool Success = 1;
+}
+
+message MakeReservationRequest {
+  string CustomerName = 1;
+  string HotelId = 2;
+  string InDate = 3;
+  string OutDate = 4;
+  int32 RoomNumber = 5;
+}
+
+message MakeReservationResponse {
+  bool Success = 1;
+}
+
+message CheckAvailabilityRequest {
+  string CustomerName = 1;
+  repeated string HotelIds = 2;
+  string InDate = 3;
+  string OutDate = 4;
+  int32 RoomNumber = 5;
+}
+
+message CheckAvailabilityResponse {
+  repeated string HotelIds = 1;
+}
