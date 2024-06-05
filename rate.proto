@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hotelproto;
 
-option go_package = "github.com/Jiali-Xing/hotel-proto;hotelproto";
+option go_package = "github.com/Jiali-Xing/hotelproto;hotelproto";
 
 // Rate service definition
 service RateService {

@@ -1,4 +1,4 @@
-module github.com/Jiali-Xing/hotel-proto
+module github.com/Jiali-Xing/hotelproto
 
 go 1.22.3
 
