@@ -1,8 +1,12 @@
 syntax = "proto3";
 
-package hotel;
+package hotelproto;
 
-option go_package = "github.com/Jiali-Xing/hotel-proto";
+option go_package = "github.com/Jiali-Xing/hotel-proto;hotelproto";
+
+// import HotelProfile from profile.proto and Rate from rate.proto
+import "profile.proto";
+import "rate.proto";
 
 // Search service definition
 service SearchService {
@@ -30,14 +34,14 @@ message NearbyResponse {
   repeated Rate Rates = 1;
 }
 
-message HotelProfile {
-  string HotelId = 1;
-  string Name = 2;
-  string Phone = 3;
-  string Info = 4;
-}
+// message HotelProfile {
+//   string HotelId = 1;
+//   string Name = 2;
+//   string Phone = 3;
+//   string Info = 4;
+// }
 
-message Rate {
-  string HotelId = 1;
-  int32 Price = 2;
-}
+// message Rate {
+//   string HotelId = 1;
+//   int32 Price = 2;
+// }

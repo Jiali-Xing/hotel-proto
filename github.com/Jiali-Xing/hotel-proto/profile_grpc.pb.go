@@ -4,7 +4,7 @@
 // - protoc             v4.25.3
 // source: profile.proto
 
-package hotel_proto
+package hotelproto
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewProfileServiceClient(cc grpc.ClientConnInterface) ProfileServiceClient {
 
 func (c *profileServiceClient) GetProfiles(ctx context.Context, in *GetProfilesRequest, opts ...grpc.CallOption) (*GetProfilesResponse, error) {
 	out := new(GetProfilesResponse)
-	err := c.cc.Invoke(ctx, "/hotel.ProfileService/GetProfiles", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.ProfileService/GetProfiles", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *profileServiceClient) GetProfiles(ctx context.Context, in *GetProfilesR
 
 func (c *profileServiceClient) StoreProfile(ctx context.Context, in *StoreProfileRequest, opts ...grpc.CallOption) (*StoreProfileResponse, error) {
 	out := new(StoreProfileResponse)
-	err := c.cc.Invoke(ctx, "/hotel.ProfileService/StoreProfile", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.ProfileService/StoreProfile", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func _ProfileService_GetProfiles_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.ProfileService/GetProfiles",
+		FullMethod: "/hotelproto.ProfileService/GetProfiles",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfileServiceServer).GetProfiles(ctx, req.(*GetProfilesRequest))
@@ -112,7 +112,7 @@ func _ProfileService_StoreProfile_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.ProfileService/StoreProfile",
+		FullMethod: "/hotelproto.ProfileService/StoreProfile",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ProfileServiceServer).StoreProfile(ctx, req.(*StoreProfileRequest))
@@ -124,7 +124,7 @@ func _ProfileService_StoreProfile_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ProfileService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hotel.ProfileService",
+	ServiceName: "hotelproto.ProfileService",
 	HandlerType: (*ProfileServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

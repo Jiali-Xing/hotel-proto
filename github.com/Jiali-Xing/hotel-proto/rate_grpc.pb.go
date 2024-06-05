@@ -4,7 +4,7 @@
 // - protoc             v4.25.3
 // source: rate.proto
 
-package hotel_proto
+package hotelproto
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewRateServiceClient(cc grpc.ClientConnInterface) RateServiceClient {
 
 func (c *rateServiceClient) GetRates(ctx context.Context, in *GetRatesRequest, opts ...grpc.CallOption) (*GetRatesResponse, error) {
 	out := new(GetRatesResponse)
-	err := c.cc.Invoke(ctx, "/hotel.RateService/GetRates", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.RateService/GetRates", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *rateServiceClient) GetRates(ctx context.Context, in *GetRatesRequest, o
 
 func (c *rateServiceClient) StoreRate(ctx context.Context, in *StoreRateRequest, opts ...grpc.CallOption) (*StoreRateResponse, error) {
 	out := new(StoreRateResponse)
-	err := c.cc.Invoke(ctx, "/hotel.RateService/StoreRate", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.RateService/StoreRate", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func _RateService_GetRates_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.RateService/GetRates",
+		FullMethod: "/hotelproto.RateService/GetRates",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RateServiceServer).GetRates(ctx, req.(*GetRatesRequest))
@@ -112,7 +112,7 @@ func _RateService_StoreRate_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.RateService/StoreRate",
+		FullMethod: "/hotelproto.RateService/StoreRate",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RateServiceServer).StoreRate(ctx, req.(*StoreRateRequest))
@@ -124,7 +124,7 @@ func _RateService_StoreRate_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var RateService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hotel.RateService",
+	ServiceName: "hotelproto.RateService",
 	HandlerType: (*RateServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

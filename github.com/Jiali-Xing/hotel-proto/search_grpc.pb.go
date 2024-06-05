@@ -4,7 +4,7 @@
 // - protoc             v4.25.3
 // source: search.proto
 
-package hotel_proto
+package hotelproto
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewSearchServiceClient(cc grpc.ClientConnInterface) SearchServiceClient {
 
 func (c *searchServiceClient) SearchHotels(ctx context.Context, in *SearchHotelsRequest, opts ...grpc.CallOption) (*SearchHotelsResponse, error) {
 	out := new(SearchHotelsResponse)
-	err := c.cc.Invoke(ctx, "/hotel.SearchService/SearchHotels", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.SearchService/SearchHotels", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *searchServiceClient) SearchHotels(ctx context.Context, in *SearchHotels
 
 func (c *searchServiceClient) Nearby(ctx context.Context, in *NearbyRequest, opts ...grpc.CallOption) (*NearbyResponse, error) {
 	out := new(NearbyResponse)
-	err := c.cc.Invoke(ctx, "/hotel.SearchService/Nearby", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.SearchService/Nearby", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func _SearchService_SearchHotels_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.SearchService/SearchHotels",
+		FullMethod: "/hotelproto.SearchService/SearchHotels",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).SearchHotels(ctx, req.(*SearchHotelsRequest))
@@ -112,7 +112,7 @@ func _SearchService_Nearby_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.SearchService/Nearby",
+		FullMethod: "/hotelproto.SearchService/Nearby",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).Nearby(ctx, req.(*NearbyRequest))
@@ -124,7 +124,7 @@ func _SearchService_Nearby_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SearchService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hotel.SearchService",
+	ServiceName: "hotelproto.SearchService",
 	HandlerType: (*SearchServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

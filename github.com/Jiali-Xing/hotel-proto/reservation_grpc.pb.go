@@ -4,7 +4,7 @@
 // - protoc             v4.25.3
 // source: reservation.proto
 
-package hotel_proto
+package hotelproto
 
 import (
 	context "context"
@@ -37,7 +37,7 @@ func NewReservationServiceClient(cc grpc.ClientConnInterface) ReservationService
 
 func (c *reservationServiceClient) FrontendReservation(ctx context.Context, in *FrontendReservationRequest, opts ...grpc.CallOption) (*FrontendReservationResponse, error) {
 	out := new(FrontendReservationResponse)
-	err := c.cc.Invoke(ctx, "/hotel.ReservationService/FrontendReservation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.ReservationService/FrontendReservation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *reservationServiceClient) FrontendReservation(ctx context.Context, in *
 
 func (c *reservationServiceClient) MakeReservation(ctx context.Context, in *MakeReservationRequest, opts ...grpc.CallOption) (*MakeReservationResponse, error) {
 	out := new(MakeReservationResponse)
-	err := c.cc.Invoke(ctx, "/hotel.ReservationService/MakeReservation", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.ReservationService/MakeReservation", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func (c *reservationServiceClient) MakeReservation(ctx context.Context, in *Make
 
 func (c *reservationServiceClient) CheckAvailability(ctx context.Context, in *CheckAvailabilityRequest, opts ...grpc.CallOption) (*CheckAvailabilityResponse, error) {
 	out := new(CheckAvailabilityResponse)
-	err := c.cc.Invoke(ctx, "/hotel.ReservationService/CheckAvailability", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/hotelproto.ReservationService/CheckAvailability", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +108,7 @@ func _ReservationService_FrontendReservation_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.ReservationService/FrontendReservation",
+		FullMethod: "/hotelproto.ReservationService/FrontendReservation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReservationServiceServer).FrontendReservation(ctx, req.(*FrontendReservationRequest))
@@ -126,7 +126,7 @@ func _ReservationService_MakeReservation_Handler(srv interface{}, ctx context.Co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.ReservationService/MakeReservation",
+		FullMethod: "/hotelproto.ReservationService/MakeReservation",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReservationServiceServer).MakeReservation(ctx, req.(*MakeReservationRequest))
@@ -144,7 +144,7 @@ func _ReservationService_CheckAvailability_Handler(srv interface{}, ctx context.
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/hotel.ReservationService/CheckAvailability",
+		FullMethod: "/hotelproto.ReservationService/CheckAvailability",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ReservationServiceServer).CheckAvailability(ctx, req.(*CheckAvailabilityRequest))
@@ -156,7 +156,7 @@ func _ReservationService_CheckAvailability_Handler(srv interface{}, ctx context.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ReservationService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "hotel.ReservationService",
+	ServiceName: "hotelproto.ReservationService",
 	HandlerType: (*ReservationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
