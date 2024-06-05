@@ -9,6 +9,7 @@ service ReservationService {
   rpc FrontendReservation(FrontendReservationRequest) returns (FrontendReservationResponse);
   rpc MakeReservation(MakeReservationRequest) returns (MakeReservationResponse);
   rpc CheckAvailability(CheckAvailabilityRequest) returns (CheckAvailabilityResponse);
+  rpc AddHotelAvailability(AddHotelAvailabilityRequest) returns (AddHotelAvailabilityResponse);
 }
 
 message FrontendReservationRequest {
@@ -46,4 +47,25 @@ message CheckAvailabilityRequest {
 
 message CheckAvailabilityResponse {
   repeated string HotelIds = 1;
+}
+
+message AddHotelAvailabilityRequest {
+  string HotelId = 1;
+  int32 Capacity = 2;
+}
+
+message AddHotelAvailabilityResponse {
+  string HotelId = 1;
+}
+
+message HotelAvailability {
+  int32 Capacity = 1;
+  repeated Reservation Reservations = 2;
+}
+
+message Reservation {
+  string CustomerName = 1;
+  string InDate = 2;
+  string OutDate = 3;
+  int32 RoomNumber = 4;
 }
