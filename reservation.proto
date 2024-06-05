@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hotel;
 
-option go_package = "github.com/Jiali-Xing/mucache/internal/hotel";
+option go_package = "github.com/Jiali-Xing/hotel-proto";
 
 // Reservation service definition
 service ReservationService {
