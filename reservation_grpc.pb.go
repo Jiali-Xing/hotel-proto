@@ -25,6 +25,7 @@ type ReservationServiceClient interface {
 	FrontendReservation(ctx context.Context, in *FrontendReservationRequest, opts ...grpc.CallOption) (*FrontendReservationResponse, error)
 	MakeReservation(ctx context.Context, in *MakeReservationRequest, opts ...grpc.CallOption) (*MakeReservationResponse, error)
 	CheckAvailability(ctx context.Context, in *CheckAvailabilityRequest, opts ...grpc.CallOption) (*CheckAvailabilityResponse, error)
+	AddHotelAvailability(ctx context.Context, in *AddHotelAvailabilityRequest, opts ...grpc.CallOption) (*AddHotelAvailabilityResponse, error)
 }
 
 type reservationServiceClient struct {
@@ -62,6 +63,15 @@ func (c *reservationServiceClient) CheckAvailability(ctx context.Context, in *Ch
 	return out, nil
 }
 
+func (c *reservationServiceClient) AddHotelAvailability(ctx context.Context, in *AddHotelAvailabilityRequest, opts ...grpc.CallOption) (*AddHotelAvailabilityResponse, error) {
+	out := new(AddHotelAvailabilityResponse)
+	err := c.cc.Invoke(ctx, "/hotelproto.ReservationService/AddHotelAvailability", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ReservationServiceServer is the server API for ReservationService service.
 // All implementations must embed UnimplementedReservationServiceServer
 // for forward compatibility
@@ -69,6 +79,7 @@ type ReservationServiceServer interface {
 	FrontendReservation(context.Context, *FrontendReservationRequest) (*FrontendReservationResponse, error)
 	MakeReservation(context.Context, *MakeReservationRequest) (*MakeReservationResponse, error)
 	CheckAvailability(context.Context, *CheckAvailabilityRequest) (*CheckAvailabilityResponse, error)
+	AddHotelAvailability(context.Context, *AddHotelAvailabilityRequest) (*AddHotelAvailabilityResponse, error)
 	mustEmbedUnimplementedReservationServiceServer()
 }
 
@@ -84,6 +95,9 @@ func (UnimplementedReservationServiceServer) MakeReservation(context.Context, *M
 }
 func (UnimplementedReservationServiceServer) CheckAvailability(context.Context, *CheckAvailabilityRequest) (*CheckAvailabilityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckAvailability not implemented")
+}
+func (UnimplementedReservationServiceServer) AddHotelAvailability(context.Context, *AddHotelAvailabilityRequest) (*AddHotelAvailabilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddHotelAvailability not implemented")
 }
 func (UnimplementedReservationServiceServer) mustEmbedUnimplementedReservationServiceServer() {}
 
@@ -152,6 +166,24 @@ func _ReservationService_CheckAvailability_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ReservationService_AddHotelAvailability_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddHotelAvailabilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ReservationServiceServer).AddHotelAvailability(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hotelproto.ReservationService/AddHotelAvailability",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ReservationServiceServer).AddHotelAvailability(ctx, req.(*AddHotelAvailabilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ReservationService_ServiceDesc is the grpc.ServiceDesc for ReservationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -170,6 +202,10 @@ var ReservationService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckAvailability",
 			Handler:    _ReservationService_CheckAvailability_Handler,
+		},
+		{
+			MethodName: "AddHotelAvailability",
+			Handler:    _ReservationService_AddHotelAvailability_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
