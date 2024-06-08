@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package hotelhotelproto;
+package hotelproto;
 
 option go_package = "github.com/Jiali-Xing/hotelproto;hotelproto";
 

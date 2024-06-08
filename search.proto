@@ -33,15 +33,3 @@ message NearbyRequest {
 message NearbyResponse {
   repeated Rate Rates = 1;
 }
-
-// message HotelProfile {
-//   string HotelId = 1;
-//   string Name = 2;
-//   string Phone = 3;
-//   string Info = 4;
-// }
-
-// message Rate {
-//   string HotelId = 1;
-//   int32 Price = 2;
-// }
