@@ -32,26 +32,3 @@ message HotelProfile {
   string Phone = 3;
   string Info = 4;
 }
-
-message StoreHotelLocationRequest {
-  string HotelId = 1;
-  string Location = 2;
-}
-
-message StoreHotelLocationResponse {
-  string HotelId = 1;
-}
-
-message StoreHotelRequest {
-  string HotelId = 1;
-  string Name = 2;
-  string Phone = 3;
-  string Location = 4;
-  int32 Rate = 5;
-  int32 Capacity = 6;
-  string Info = 7;
-}
-
-message StoreHotelResponse {
-  string HotelId = 1;
-}

@@ -22,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ReservationServiceClient interface {
-	FrontendReservation(ctx context.Context, in *FrontendReservationRequest, opts ...grpc.CallOption) (*FrontendReservationResponse, error)
 	MakeReservation(ctx context.Context, in *MakeReservationRequest, opts ...grpc.CallOption) (*MakeReservationResponse, error)
 	CheckAvailability(ctx context.Context, in *CheckAvailabilityRequest, opts ...grpc.CallOption) (*CheckAvailabilityResponse, error)
 	AddHotelAvailability(ctx context.Context, in *AddHotelAvailabilityRequest, opts ...grpc.CallOption) (*AddHotelAvailabilityResponse, error)
@@ -34,15 +33,6 @@ type reservationServiceClient struct {
 
 func NewReservationServiceClient(cc grpc.ClientConnInterface) ReservationServiceClient {
 	return &reservationServiceClient{cc}
-}
-
-func (c *reservationServiceClient) FrontendReservation(ctx context.Context, in *FrontendReservationRequest, opts ...grpc.CallOption) (*FrontendReservationResponse, error) {
-	out := new(FrontendReservationResponse)
-	err := c.cc.Invoke(ctx, "/hotelproto.ReservationService/FrontendReservation", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *reservationServiceClient) MakeReservation(ctx context.Context, in *MakeReservationRequest, opts ...grpc.CallOption) (*MakeReservationResponse, error) {
@@ -76,7 +66,6 @@ func (c *reservationServiceClient) AddHotelAvailability(ctx context.Context, in 
 // All implementations must embed UnimplementedReservationServiceServer
 // for forward compatibility
 type ReservationServiceServer interface {
-	FrontendReservation(context.Context, *FrontendReservationRequest) (*FrontendReservationResponse, error)
 	MakeReservation(context.Context, *MakeReservationRequest) (*MakeReservationResponse, error)
 	CheckAvailability(context.Context, *CheckAvailabilityRequest) (*CheckAvailabilityResponse, error)
 	AddHotelAvailability(context.Context, *AddHotelAvailabilityRequest) (*AddHotelAvailabilityResponse, error)
@@ -87,9 +76,6 @@ type ReservationServiceServer interface {
 type UnimplementedReservationServiceServer struct {
 }
 
-func (UnimplementedReservationServiceServer) FrontendReservation(context.Context, *FrontendReservationRequest) (*FrontendReservationResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FrontendReservation not implemented")
-}
 func (UnimplementedReservationServiceServer) MakeReservation(context.Context, *MakeReservationRequest) (*MakeReservationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MakeReservation not implemented")
 }
@@ -110,24 +96,6 @@ type UnsafeReservationServiceServer interface {
 
 func RegisterReservationServiceServer(s grpc.ServiceRegistrar, srv ReservationServiceServer) {
 	s.RegisterService(&ReservationService_ServiceDesc, srv)
-}
-
-func _ReservationService_FrontendReservation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FrontendReservationRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ReservationServiceServer).FrontendReservation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/hotelproto.ReservationService/FrontendReservation",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ReservationServiceServer).FrontendReservation(ctx, req.(*FrontendReservationRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _ReservationService_MakeReservation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -191,10 +159,6 @@ var ReservationService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "hotelproto.ReservationService",
 	HandlerType: (*ReservationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "FrontendReservation",
-			Handler:    _ReservationService_FrontendReservation_Handler,
-		},
 		{
 			MethodName: "MakeReservation",
 			Handler:    _ReservationService_MakeReservation_Handler,

@@ -6,23 +6,9 @@ option go_package = "github.com/Jiali-Xing/hotelproto;hotelproto";
 
 // Reservation service definition
 service ReservationService {
-  rpc FrontendReservation(FrontendReservationRequest) returns (FrontendReservationResponse);
   rpc MakeReservation(MakeReservationRequest) returns (MakeReservationResponse);
   rpc CheckAvailability(CheckAvailabilityRequest) returns (CheckAvailabilityResponse);
   rpc AddHotelAvailability(AddHotelAvailabilityRequest) returns (AddHotelAvailabilityResponse);
-}
-
-message FrontendReservationRequest {
-  string HotelId = 1;
-  string InDate = 2;
-  string OutDate = 3;
-  int32 Rooms = 4;
-  string Username = 5;
-  string Password = 6;
-}
-
-message FrontendReservationResponse {
-  bool Success = 1;
 }
 
 message MakeReservationRequest {

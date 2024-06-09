@@ -5,23 +5,12 @@ package hotelproto;
 option go_package = "github.com/Jiali-Xing/hotelproto;hotelproto";
 
 // import HotelProfile from profile.proto and Rate from rate.proto
-import "profile.proto";
 import "rate.proto";
 
 // Search service definition
 service SearchService {
-  rpc SearchHotels(SearchHotelsRequest) returns (SearchHotelsResponse);
   rpc Nearby(NearbyRequest) returns (NearbyResponse);
-}
-
-message SearchHotelsRequest {
-  string InDate = 1;
-  string OutDate = 2;
-  string Location = 3;
-}
-
-message SearchHotelsResponse {
-  repeated HotelProfile Profiles = 1;
+  rpc StoreHotelLocation(StoreHotelLocationRequest) returns (StoreHotelLocationResponse);
 }
 
 message NearbyRequest {
@@ -32,4 +21,13 @@ message NearbyRequest {
 
 message NearbyResponse {
   repeated Rate Rates = 1;
+}
+
+message StoreHotelLocationRequest {
+  string HotelId = 1;
+  string Location = 2;
+}
+
+message StoreHotelLocationResponse {
+  string HotelId = 1;
 }
